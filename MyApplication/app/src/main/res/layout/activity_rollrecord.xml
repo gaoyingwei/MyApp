@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        tools:ignore="MissingConstraints" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_alignParentLeft="true"
+            android:text="已转出金额"
+            android:textSize="14sp"
+            android:id="@+id/text_already_money"
+            android:textColor="#ff303030"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1232.21元"
+            android:id="@+id/text_money"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:textColor="#ff303030"
+            android:textSize="14sp"
+            />
+    </RelativeLayout>
+    <!--<androidx.recyclerview.widget.RecyclerView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="#ffff"-->
+        <!--android:id="@+id/roll_recylerview"-->
+        <!--&gt;</androidx.recyclerview.widget.RecyclerView>-->
+    <include layout="@layout/item_rollrecord"/>
+    <include layout="@layout/item_rollrecord"/>
+    <include layout="@layout/item_rollrecord"/>
+    <include layout="@layout/item_rollrecord"/>
+    <include layout="@layout/item_rollrecord"/>
+</LinearLayout>

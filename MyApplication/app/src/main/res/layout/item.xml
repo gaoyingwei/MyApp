@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:background="@drawable/toppop_share"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/f"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="15sp"
+            android:layout_weight="1"
+            android:text="发布成功，你可以分享到"
+            android:gravity="center"
+            android:textColor="#333333"
+            />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@mipmap/xin"
+                android:id="@+id/xin1"
+                android:layout_weight="1"
+                />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/xin"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+</FrameLayout>

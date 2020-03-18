@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            //jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.android.support:design:28.0.0'
+    //第三方流式布局
+    implementation 'com.github.LRH1993:AutoFlowLayout:1.0.5'
+    implementation 'com.github.xiaohaibin:XBanner:1.6.1'
+    //第三方框架XBanner轮播
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    //Glide请求图片依赖
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.contrarywind:Android-PickerView:3.2.6'
+     //implementation 'com.amap.api:3dmap:latest.integration'
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation files('libs/AMap3DMap_6.9.0_AMapNavi_6.8.0_AMapLocation_4.6.0_20190530.jar')
+}
+
+

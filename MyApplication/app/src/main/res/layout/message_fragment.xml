@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="285dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/search_bg"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="10dp"
+                android:background="@mipmap/searchs" />
+            <!-- 输入的搜索信息 -->
+            <EditText
+                android:id="@+id/et_searchs"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="4"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="输入内容进行搜索"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColor="#0e0e0e"
+                android:textColorHint="#999"
+                android:focusable="false"
+                android:textSize="14sp" />
+
+
+            <Button
+                android:id="@+id/bt_clear"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:visibility="gone"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="10dp"
+                android:background="@mipmap/deletes" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:id="@+id/text_search"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="选项"
+            android:textColor="#999"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            />
+
+    </RelativeLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:tabMode="scrollable"
+                app:tabTextAppearance="@style/Tabs"
+                android:id="@+id/TopNav"></com.google.android.material.tabs.TabLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:id="@+id/main_frag_1_main">
+            </androidx.viewpager.widget.ViewPager>
+
+</LinearLayout>

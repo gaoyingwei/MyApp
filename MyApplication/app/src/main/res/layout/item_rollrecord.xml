@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="转出到收益"
+        android:layout_marginTop="10dp"
+        android:textColor="#ff303030"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:textSize="16sp"
+        android:id="@+id/item_text_shou"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2019-03-14  12:23:11"
+        android:textColor="#ff949494"
+        android:textSize="12sp"
+        android:id="@+id/text_time"
+        android:layout_below="@id/item_text_shou"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-300.34"
+        android:textColor="#fff4764f"
+        android:textSize="21sp"
+        android:id="@+id/item_money"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_centerVertical="true"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F6F6F6"
+        android:layout_below="@id/text_time"
+        android:layout_marginTop="15dp"
+        />
+</RelativeLayout>
