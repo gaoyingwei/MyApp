@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.ViewActivity;
 import com.example.myapplication.util.ActionSheet;
 import com.example.myapplication.util.AlertDialog;
 import com.example.myapplication.util.ConstomDialog;
@@ -50,6 +52,7 @@ public class My_Fragment extends Fragment {
     private Date date;
     private String format;
     private Calendar calendar;
+    TextView textView_username;
     Dialog mShareDialog;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class My_Fragment extends Fragment {
         nav_bar_tui=view.findViewById(R.id.tui);
         nav_bar_birthday=view.findViewById(R.id.version);
         nav_bar_my=view.findViewById(R.id.my);
+        textView_username=view.findViewById(R.id.user_name);
         return view;
     }
 
@@ -91,7 +95,12 @@ public class My_Fragment extends Fragment {
 
             }
         });
-
+        textView_username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ViewActivity.class));
+            }
+        });
         nav_bar_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

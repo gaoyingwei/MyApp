@@ -35,7 +35,7 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ViewActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,6 +45,7 @@
         <meta-data android:name="com.amap.api.v2.apikey" android:value="881f4e487606fcb1c6493dc90b17e39c">
         </meta-data>
         <activity android:name=".ui.SearcherActivity"/>
+        <activity android:name=".ui.ViewActivity"/>
         <service android:name="com.amap.api.location.APSService"/>
     </application>
 </manifest>
