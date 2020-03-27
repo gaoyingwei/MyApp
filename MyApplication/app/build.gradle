@@ -5,11 +5,22 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.myapplication"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        ndk {
+
+            //设置支持的SO库架构
+
+            abiFilters'armeabi','armeabi-v7a','x86'
+
+        }
+
+
     }
 
     buildTypes {
@@ -45,11 +56,18 @@ dependencies {
     //Glide请求图片依赖
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.contrarywind:Android-PickerView:3.2.6'
-     //implementation 'com.amap.api:3dmap:latest.integration'
-    //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.google.code.gson:gson:2.8.2'
-    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation 'com.gcssloop.widget:rclayout:1.4.2@aar'
+
+    implementation 'com.facebook.fresco:fresco:0.12.0'
+    implementation 'com.github.CodeWrt:RTMultiCheckDialog:1.2'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation files('libs/AMap3DMap_6.9.0_AMapNavi_6.8.0_AMapLocation_4.6.0_20190530.jar')
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'fm.jiecao:jiecaovideoplayer:5.5.4'
+    implementation 'com.zhy:base-adapter:3.0.3'
+    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+    implementation 'com.github.WelliJohn:StickScrollView:0.0.3'
 }
-
-

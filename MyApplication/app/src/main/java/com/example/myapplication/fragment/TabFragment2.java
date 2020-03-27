@@ -118,12 +118,12 @@ public class TabFragment2 extends Fragment {
         for (int i = 0; i < 30; i++) {
             SortBean bean = new SortBean();
             bean.bigSortId = i;
-            bean.bigSortName = "大分类" + i;
+            bean.bigSortName = "商品" + i;
             List<SortBean.ListBean> list = new ArrayList<>();
             for (int j = 0; j < 10; j++) {
                 SortBean.ListBean listBean = new SortBean.ListBean();
                 listBean.smallSortId = j;
-                listBean.smallSortName = "小标签" + j;
+                listBean.smallSortName = "手机" + j;
                 list.add(listBean);
             }
             bean.list = list;

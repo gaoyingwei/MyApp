@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@id/user_line"
                         android:text="张三"
-                        android:textColor="@color/white"
+                        android:textColor="@color/qq_white"
                         android:textSize="17sp" />
 
                     <TextView
@@ -69,7 +69,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_toRightOf="@id/user_line"
                         android:text="182****5882"
-                        android:textColor="@color/white"
+                        android:textColor="@color/qq_white"
                         android:textSize="17sp" />
                 </RelativeLayout>
 

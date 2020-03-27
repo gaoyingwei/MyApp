@@ -1,14 +1,19 @@
 package com.example.myapplication.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,12 +21,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +42,8 @@ import com.example.myapplication.ui.ViewActivity;
 import com.example.myapplication.util.ActionSheet;
 import com.example.myapplication.util.AlertDialog;
 import com.example.myapplication.util.ConstomDialog;
+import com.example.myapplication.util.FiltrateBean;
+import com.example.myapplication.util.FlowPopWindow;
 import com.example.myapplication.util.LoadingDialog;
 import com.example.myapplication.util.nav_bar;
 
@@ -39,8 +52,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -52,8 +69,19 @@ public class My_Fragment extends Fragment {
     private Date date;
     private String format;
     private Calendar calendar;
-    TextView textView_username;
+    TextView textView_username,textView_uvl;
     Dialog mShareDialog;
+    private PopupWindow popupWindow;
+    private View popupView = null;
+    private EditText inputComment;
+    private String nInputContentText;
+    private TextView btn_submit;
+    private RelativeLayout rl_input_container;
+    private InputMethodManager mInputManager;
+    //筛选框控件
+    private FlowPopWindow flowPopWindow;
+    //筛选框数据
+    private List<FiltrateBean> dictList = new ArrayList<>();
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //不显示系统的标题栏,
@@ -67,18 +95,20 @@ public class My_Fragment extends Fragment {
         nav_bar_birthday=view.findViewById(R.id.version);
         nav_bar_my=view.findViewById(R.id.my);
         textView_username=view.findViewById(R.id.user_name);
+        textView_uvl=view.findViewById(R.id.user_val);
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initParam();
         LoadingDialog loadingDialog = new LoadingDialog(getActivity(),"加载中...",R.mipmap.ic_dialog_loading);
         loadingDialog.show();
         loadingDialog.setCanceledOnTouchOutside(true);
         // HH:mm:ss
         simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-//获取当前时间
+        //获取当前时间
         date = new Date(System.currentTimeMillis());
         format = simpleDateFormat.format(date);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +128,8 @@ public class My_Fragment extends Fragment {
         textView_username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ViewActivity.class));
+                toAliPayScan(getActivity());
+
             }
         });
         nav_bar_birthday.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +168,30 @@ public class My_Fragment extends Fragment {
             public void onClick(View v) {
                initShareDialog();
                mShareDialog.show();
+            }
+        });
+
+        textView_uvl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flowPopWindow = new FlowPopWindow(getActivity(), dictList);
+                flowPopWindow.showAsDropDown(getActivity().getWindow().getDecorView(), Gravity.TOP, 0, 0);
+                flowPopWindow.setOnConfirmClickListener(new FlowPopWindow.OnConfirmClickListener() {
+                    @Override
+                    public void onConfirmClick() {
+                        StringBuilder sb = new StringBuilder();
+                        for (FiltrateBean fb : dictList) {
+                            List<FiltrateBean.Children> cdList = fb.getChildren();
+                            for (int x = 0; x < cdList.size(); x++) {
+                                FiltrateBean.Children children = cdList.get(x);
+                                if (children.isSelected())
+                                    sb.append(fb.getTypeName() + ":" + children.getValue() + "；");
+                            }
+                        }
+                        if (!TextUtils.isEmpty(sb.toString()))
+                            Toast.makeText(getActivity(), "111"+sb.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
@@ -355,5 +410,159 @@ public class My_Fragment extends Fragment {
         return null;
     }
 
+    @SuppressLint("WrongConstant")
+    public static void toWeChatScanDirect(Context context) {
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI"));
+            intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+            intent.setFlags(335544320);
+            intent.setAction("android.intent.action.VIEW");
+            context.startActivity(intent);
+        } catch (Exception e) {
+        }
+    }
+    public static void toAliPayScan(Context context)
+    {
+        try
+        {
+            Uri uri = Uri.parse("alipayqr://platformapi/startapp?saId=10000007");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            context.startActivity(intent);
+        } catch (Exception e)
+        {
+            Toast.makeText(context, "打开失败，请检查是否安装了支付宝", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @SuppressLint("WrongConstant")
+    private void showPopupcomment() {
+        if (popupView  == null){
+            //加载评论框的资源文件
+            popupView =  LayoutInflater.from(getActivity()).inflate(R.layout.comment_popupwindow, null);
+        }
+        inputComment = (EditText) popupView.findViewById(R.id.et_discuss);
+        btn_submit = (Button) popupView.findViewById(R.id.btn_confirm);
+        rl_input_container = (RelativeLayout)popupView.findViewById(R.id.rl_input_container);
+        //利用Timer这个Api设置延迟显示软键盘，这里时间为200毫秒
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            public void run()
+            {
+                mInputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                mInputManager.showSoftInput(inputComment, 0);
+            }
+
+        }, 200);
+        if (popupWindow == null){
+            popupWindow = new PopupWindow(popupView, RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, false);
+
+        }
+        //popupWindow的常规设置，设置点击外部事件，背景色
+        popupWindow.setTouchable(true);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_OUTSIDE)
+                    popupWindow.dismiss();
+                return false;
+
+            }
+        });
+
+        // 设置弹出窗体需要软键盘，放在setSoftInputMode之前
+        popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+        // 再设置模式，和Activity的一样，覆盖，调整大小。
+        popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        //设置popupwindow的显示位置，这里应该是显示在底部，即Bottom
+        popupWindow.showAtLocation(popupView, Gravity.BOTTOM, 0, 0);
+
+        popupWindow.update();
+
+        //设置监听
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            // 在dismiss中恢复透明度
+            @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
+            public void onDismiss() {
+
+                mInputManager.hideSoftInputFromWindow(inputComment.getWindowToken(), 0); //强制隐藏键盘
+
+
+            }
+        });
+        //外部点击事件
+        rl_input_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                mInputManager.hideSoftInputFromWindow(inputComment.getWindowToken(), 0); //强制隐藏键盘
+                popupWindow.dismiss();
+
+            }
+        });
+        //评论框内的发送按钮设置点击事件
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                nInputContentText = inputComment.getText().toString().trim();
+
+                if (nInputContentText == null || "".equals(nInputContentText)) {
+                    Toast.makeText(getActivity(), "请输入评论内容", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mInputManager.hideSoftInputFromWindow(inputComment.getWindowToken(),0);
+                popupWindow.dismiss();
+
+            }
+        });
+    }
+    //这些是假数据，真实项目中直接接口获取添加进来，FiltrateBean对象可根据自己需求更改
+    private void initParam() {
+        String[] sexs = {"男", "女"};
+        String[] colors = {"红色", "浅黄色", "橙子色", "鲜绿色", "青色", "天蓝色", "紫色", "黑曜石色", "白色", "五颜六色"};
+        String[] company = {"阿里巴巴集团", "腾讯集团", "华为技术服务有限公司", "小米", "www.xiaomi.com"};
+
+        FiltrateBean fb1 = new FiltrateBean();
+        fb1.setTypeName("性别");
+        List<FiltrateBean.Children> childrenList = new ArrayList<>();
+        for (String sex : sexs) {
+            FiltrateBean.Children cd = new FiltrateBean.Children();
+            cd.setValue(sex);
+            childrenList.add(cd);
+        }
+        fb1.setChildren(childrenList);
+
+        FiltrateBean fb2 = new FiltrateBean();
+        fb2.setTypeName("颜色");
+        List<FiltrateBean.Children> childrenList2 = new ArrayList<>();
+        for (String color : colors) {
+            FiltrateBean.Children cd = new FiltrateBean.Children();
+            cd.setValue(color);
+            childrenList2.add(cd);
+        }
+        fb2.setChildren(childrenList2);
+
+        FiltrateBean fb3 = new FiltrateBean();
+        fb3.setTypeName("企业");
+        List<FiltrateBean.Children> childrenList3 = new ArrayList<>();
+        for (String s : company) {
+            FiltrateBean.Children cd = new FiltrateBean.Children();
+            cd.setValue(s);
+            childrenList3.add(cd);
+        }
+        fb3.setChildren(childrenList3);
+
+        dictList.add(fb1);
+        dictList.add(fb2);
+        dictList.add(fb3);
+    }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +17,6 @@ import com.example.myapplication.fragment.Message_Fragment;
 import com.example.myapplication.fragment.My_Fragment;
 import com.example.myapplication.fragment.Work_Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends AppCompatActivity {
 

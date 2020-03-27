@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
-    <com.stx.xhb.xbanner.XBanner
-        android:layout_marginTop="10dp"
-        android:id="@+id/xbanner_view"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:isAutoPlay="true"
-        app:AutoPlayTime="3000"
-        app:pointsPosition="CENTER"
-        app:isShowIndicatorOnlyOne="true"
-        app:tipTextSize="12sp"/>
+    android:orientation="vertical"
+        >
 
-</RelativeLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.stx.xhb.xbanner.XBanner
+            android:layout_marginTop="10dp"
+            android:id="@+id/xbanner_view"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:isAutoPlay="true"
+            app:AutoPlayTime="3000"
+            app:pointsPosition="CENTER"
+            app:isShowIndicatorOnlyOne="true"
+            app:tipTextSize="12sp"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           >
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+           <include layout="@layout/item_rollrecord"/>
+       </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

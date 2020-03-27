@@ -3,6 +3,7 @@
     package="com.example.myapplication">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
 
@@ -46,6 +47,7 @@
         </meta-data>
         <activity android:name=".ui.SearcherActivity"/>
         <activity android:name=".ui.ViewActivity"/>
+        <activity android:name=".ui.LoginActivity"/>
         <service android:name="com.amap.api.location.APSService"/>
     </application>
 </manifest>

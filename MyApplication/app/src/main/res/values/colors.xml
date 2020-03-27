@@ -5,7 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="home_bottom_tab_blue">#38adff</color>
     <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="title_text">#26B8EE</color>
     <color name="main_color">#5CB85C</color>
@@ -57,7 +56,7 @@
     <color name="orange_f7">#f7a805</color>
 
     <color name="yellow_b3">#b39b61</color>
-
+    <color name="white">#fff</color>
     <color name="purple_bf">#bf5dee</color>
     <color name="purple_55">#553de6</color>
 
@@ -403,5 +402,34 @@
 
     <color name="orange">#FF9701</color>
     <color name="blue">#0BC7F0</color>
+
+    <color name="item_decoration_title_background">#23282E</color>
+    <color name="item_decoration_title_fontcolor">#74869C</color>
+
+    <color name="background_recyclerview">#2E363C</color>
+
+    <color name="listitem_title_text">#D8DFE7</color>
+    <color name="listitem_subtitle_text">#74869C</color>
+
+    <color name="dialog_hint">#4CD8DFE7</color>
+
+    <color name="indexbar_letter_color">#7FFFFFFF</color>
+
+
+
+    <color name="qq_white">#f8fefe</color>
+
+    <color name="alpha50_white">#80ffffff</color>
+
+    <color name="alpha70_white">#b0ffffff</color>
+
+    <color name="alpha70_green">#c0279de0</color>
+
+    <color name="alpha90_green">#d027a8f0</color>
+    <color name="alpha40_green">#7027a8f0</color>
+
+    <color name="light_green">#90df24</color>
+
+    <color name="alpha50_light_green">#8090df24</color>
 
 </resources>

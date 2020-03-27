@@ -20,10 +20,13 @@ import com.example.myapplication.adapter.TabFragmentAdapter;
 import com.example.myapplication.ui.SearcherActivity;
 import com.example.myapplication.ui.TopWindowUtils;
 import com.example.myapplication.util.LoadingDialog;
+import com.example.myapplication.video.VideoAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class Message_Fragment extends Fragment {
     private ViewPager main_frag_1_main_ViewPager;
@@ -50,14 +53,14 @@ public class Message_Fragment extends Fragment {
         TabFragmentList.add(new TabFragment5());
         TabFragmentList.add(new TabFragment6());
         TabFragmentList.add(new TabFragment7());
+
         tabFragmentAdapter = new TabFragmentAdapter(getActivity().getSupportFragmentManager(), TabFragmentList, TabTitleList);
         main_frag_1_main_ViewPager.setAdapter(tabFragmentAdapter);
         TopNavTabLayout.setupWithViewPager(main_frag_1_main_ViewPager);
         TopNavTabLayout.setTabIndicatorFullWidth(false);
         TopNavTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#3D87FB"));
         TopNavTabLayout.setTabTextColors(Color.GRAY,Color.parseColor("#3D87FB"));
-        TopNavTabLayout.setTabRippleColor(ColorStateList.valueOf(getContext().getResources().getColor(R.color.white)));
-
+        TopNavTabLayout.setTabRippleColor(ColorStateList.valueOf(getContext().getResources().getColor(R.color.qq_white)));
         editText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -17,4 +17,10 @@ public class TabFragment7 extends Fragment {
         View view=inflater.inflate(R.layout.tab_fragment7,container,false);
         return view;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
 }
