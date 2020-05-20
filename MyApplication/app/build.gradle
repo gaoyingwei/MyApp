@@ -70,4 +70,6 @@ dependencies {
     implementation 'com.zhy:base-adapter:3.0.3'
     implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
     implementation 'com.github.WelliJohn:StickScrollView:0.0.3'
+
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

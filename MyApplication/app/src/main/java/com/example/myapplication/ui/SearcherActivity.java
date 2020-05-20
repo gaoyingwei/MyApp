@@ -15,10 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.library.AutoFlowLayout;
 import com.example.library.FlowAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.util.TestBaseActivity;
 
 import java.util.ArrayList;
 
-public class SearcherActivity extends AppCompatActivity {
+public class SearcherActivity extends TestBaseActivity {
     AutoFlowLayout autoFlowLayout;
     TextView textView_delete;
     EditText editText;
@@ -29,6 +30,7 @@ public class SearcherActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        setCheckNetworkStatusChangeListenerEnable(true);
         editText=findViewById(R.id.et_search);
         button_clear=findViewById(R.id.bt_clear);
         autoFlowLayout=findViewById(R.id.flowLayout);

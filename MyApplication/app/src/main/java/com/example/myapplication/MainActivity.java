@@ -1,13 +1,21 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -16,9 +24,10 @@ import android.widget.Toast;
 import com.example.myapplication.fragment.Message_Fragment;
 import com.example.myapplication.fragment.My_Fragment;
 import com.example.myapplication.fragment.Work_Fragment;
+import com.example.myapplication.util.TestBaseActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TestBaseActivity {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment work_fragment;
@@ -31,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setCheckNetworkStatusChangeListenerEnable(true);
         initFragment();
     }
 
@@ -112,4 +122,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
     }
